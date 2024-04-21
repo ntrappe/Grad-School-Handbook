@@ -1,1 +1,3 @@
-# Grad-School-Handbook
+# Grad School Handbook
+
+In progress

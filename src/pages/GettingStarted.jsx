@@ -4,8 +4,8 @@ function GettingStarted() {
   return (
     <ThemeProvider>
       <BaseStyles>
-        <Heading as="h1">Getting Started</Heading>
-        <Text>Welcome! So you're thinking about going to graduate school? Exciting!</Text>
+        <h1>Getting Started</h1>
+        <p>Welcome! So you're thinking about going to graduate school? Exciting!</p>
       </BaseStyles>
     </ThemeProvider>
   )

@@ -1,0 +1,32 @@
+@import '@primer/primitives/dist/css/functional/themes/light.css';
+@import '@primer/primitives/dist/css/functional/themes/dark.css';
+@import '@primer/primitives/dist/css/functional/size/border.css';
+
+body[data-color-scheme="day"] {
+  background-color: var(--bgColor-light-default, white);
+}
+
+body[data-color-scheme="night"] {
+  background-color: var(--bgColor-dark-default, black);
+}
+
+#root {
+  background-color: inherit;
+}
+
+/* Remove once I can import from the official @primer/primitives .css files */
+:root {
+  --bgColor-light-default: #ffffff;
+  --bgColor-light-muted: #f6f8fa;
+  --bgColor-light-inset: #f6f8fa;
+  --bgColor-light-emphasis: #24292f;
+  --bgColor-light-inverse: #24292f;
+  --bgColor-light-white: #ffffff;
+  --bgColor-light-black: #1f2328;
+  --bgColor-light-disabled: #eaeef2b3;
+  --bgColor-light-transparent: #ffffff00;
+  --bgColor-light-neutral-muted: #afb8c133;
+  --bgColor-light-neutral-emphasis: #6e7781;
+  --bgColor-dark-default: #0E1116;
+  --bgColor-dark-muted: #171B21;
+}

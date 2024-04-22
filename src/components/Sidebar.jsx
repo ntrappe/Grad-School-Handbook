@@ -2,10 +2,10 @@ import {ThemeProvider, BaseStyles, NavList, Heading} from '@primer/react';
 import React, { useState, useEffect } from 'react';
 /* Icons from https://primer.style/foundations/icons */
 import { HomeIcon, MailIcon, FileDirectoryIcon, MortarBoardIcon,
-         LogIcon, CommentDiscussionIcon, DiscussionClosedIcon,
-         PeopleIcon, GoalIcon, ThumbsupIcon, CodeOfConductIcon,
-         PasteIcon, CalendarIcon, UnverifiedIcon, ProjectRoadmapIcon,
-         PencilIcon, MoonIcon, PlusCircleIcon
+         LogIcon, PeopleIcon, MegaphoneIcon, GoalIcon, ReadIcon,
+         ThumbsupIcon, CodeOfConductIcon, PasteIcon, CalendarIcon,
+         UnverifiedIcon, ProjectRoadmapIcon, PencilIcon, SunIcon,
+         PlusCircleIcon, TableIcon, CommentDiscussionIcon, MentionIcon,
        } from '@primer/octicons-react';
 
 function Sidebar() {
@@ -35,7 +35,7 @@ function Sidebar() {
               <NavList.LeadingVisual>
                 <LogIcon />
               </NavList.LeadingVisual>
-              Choosing Your Degree
+              Choose Your Degree
             </NavList.Item>
             <NavList.Item 
                 href="/area"
@@ -43,7 +43,7 @@ function Sidebar() {
               <NavList.LeadingVisual>
                 <GoalIcon />
               </NavList.LeadingVisual>
-              Identifying Your Area
+              Identify Your Area
             </NavList.Item>
             <NavList.Item 
                 href="/growth"
@@ -59,7 +59,7 @@ function Sidebar() {
               <NavList.LeadingVisual>
                 <PeopleIcon />
               </NavList.LeadingVisual>
-              Building Your Team
+              Build Your Team
             </NavList.Item>
             <NavList.Item 
                 href="/school"
@@ -67,7 +67,7 @@ function Sidebar() {
               <NavList.LeadingVisual>
                 <MortarBoardIcon />
               </NavList.LeadingVisual>
-              Selecting Schools
+              Select Schools
             </NavList.Item>
             <NavList.Item 
                 href="/interview-students"
@@ -75,7 +75,7 @@ function Sidebar() {
               <NavList.LeadingVisual>
                 <CommentDiscussionIcon />
               </NavList.LeadingVisual>
-              Interviewing Students
+              Interview Students
             </NavList.Item>
             <NavList.Item 
                 href="/contact-supervisors"
@@ -83,7 +83,7 @@ function Sidebar() {
               <NavList.LeadingVisual>
                 <MailIcon />
               </NavList.LeadingVisual>
-              Contacting Potential Supervisors
+              Contact Supervisors
             </NavList.Item>
           </NavList.Group>
           <NavList.Group title="Application">
@@ -93,7 +93,7 @@ function Sidebar() {
               <NavList.LeadingVisual>
                 <CalendarIcon />
               </NavList.LeadingVisual>
-              Making a Plan
+              Make a Plan
             </NavList.Item>
             <NavList.Item 
                 href="/materials"
@@ -101,13 +101,13 @@ function Sidebar() {
               <NavList.LeadingVisual>
                 <FileDirectoryIcon />
               </NavList.LeadingVisual>
-              Preparing Materials
+              Prepare Materials
             </NavList.Item>
             <NavList.Item 
                 href="/letters"
                 aria-current={pageRef === "/letters" ? 'page' : 'false'}>
               <NavList.LeadingVisual>
-                <DiscussionClosedIcon />
+                <ReadIcon />
               </NavList.LeadingVisual>
               Letters of Recommendation
             </NavList.Item>
@@ -117,7 +117,7 @@ function Sidebar() {
               <NavList.LeadingVisual>
                 <PencilIcon />
               </NavList.LeadingVisual>
-              Writing Statements
+              Write Statements
             </NavList.Item>
           </NavList.Group>
           <NavList.Group title="Post-Application">
@@ -125,32 +125,24 @@ function Sidebar() {
                 href="/prep-interviews"
                 aria-current={pageRef === "/prep-interviews" ? 'page' : 'false'}>
               <NavList.LeadingVisual>
-                <CommentDiscussionIcon />
+                <MegaphoneIcon />
               </NavList.LeadingVisual>
-              Preparing for Interviews
+              Prepare for Interviews
             </NavList.Item>
             <NavList.Item 
                 href="/decision"
                 aria-current={pageRef === "/decision" ? 'page' : 'false'}>
               <NavList.LeadingVisual>
-                <ThumbsupIcon />
-              </NavList.LeadingVisual>
-              Receiving the Decision
-            </NavList.Item>
-            <NavList.Item 
-                href="/steps"
-                aria-current={pageRef === "/steps" ? 'page' : 'false'}>
-              <NavList.LeadingVisual>
                 <UnverifiedIcon />
               </NavList.LeadingVisual>
-              Contemplating the Offer
+              Receive the Decision
             </NavList.Item>
             <NavList.Item href="/thanks"
                 aria-current={pageRef === "/thanks" ? 'page' : 'false'}>
               <NavList.LeadingVisual>
                 <CodeOfConductIcon />
               </NavList.LeadingVisual>
-              Sending Thanks
+              Send Thanks
             </NavList.Item>
           </NavList.Group>
           <NavList.Group title="Examples">
@@ -171,12 +163,20 @@ function Sidebar() {
               Research Proposals
             </NavList.Item>
             <NavList.Item 
+                href="/cv"
+                aria-current={pageRef === "/cv" ? 'page' : 'false'}>
+              <NavList.LeadingVisual>
+                <TableIcon />
+              </NavList.LeadingVisual>
+              Curriculumn Vitae
+            </NavList.Item>
+            <NavList.Item 
                 href="/emails"
                 aria-current={pageRef === "/emails" ? 'page' : 'false'}>
               <NavList.LeadingVisual>
-                <MailIcon />
+                <MentionIcon />
               </NavList.LeadingVisual>
-              Professional Emails
+              Emails & Messages
             </NavList.Item>
           </NavList.Group>
           <NavList.Group title="Tips & Tricks">
@@ -184,9 +184,9 @@ function Sidebar() {
                 href="/habits"
                 aria-current={pageRef === "/habits" ? 'page' : 'false'}>
               <NavList.LeadingVisual>
-                <MoonIcon />
+                <SunIcon />
               </NavList.LeadingVisual>
-              Building Good Habits
+              Build Good Habits
             </NavList.Item>
           </NavList.Group>
         </NavList>

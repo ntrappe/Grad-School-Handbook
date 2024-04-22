@@ -1,35 +1,29 @@
-import { ThemeProvider, BaseStyles, PageLayout, Header,
-         Octicon, IconButton, 
+import React, { useEffect, useState } from 'react';
+import { ThemeProvider, themeGet, BaseStyles, PageLayout, Header,
+         Octicon, IconButton, Text, Heading
        } from '@primer/react';
-import { MortarBoardIcon, ThreeBarsIcon } from '@primer/octicons-react';
 import Sidebar from './components/Sidebar';
-import MainContent from './components/MainContent'
+import MainContent from './components/MainContent';
+import FixedHeader from './pages/FixedHeader';
 
 function App() {
+  const theme = { themeGet };
+  const [colors, setColors] = useState('day');
+
+  useEffect(() => {
+    window.addEventListener('set night', () => setColors('night'));
+    window.addEventListener('set day', () => setColors('day'));
+  }, [colors])
+
   return (
-    <ThemeProvider>
+    <ThemeProvider colorMode={colors} dayScheme='light' nightScheme='dark_dimmed'>
       <BaseStyles>
         <PageLayout>
-          <PageLayout.Header>
-            {/* <Header sx={{
-              backgroundColor: 'white',
-              borderBottomWidth: 1,
-              borderBottomColor: 'border.default',
-              borderBottomStyle: 'solid',
-            }}>
-              <Header.Item>
-                <Header.Link href="/" sx={{fontSize: 2, color: 'black'}}>
-                  <Octicon icon={MortarBoardIcon} size={32} sx={{mr: 2}} />
-                  <span>The Grad School Handbook</span>
-                </Header.Link>
-              </Header.Item>
-              <Header.Item sx={{mr: 0}} hidden={{ narrow: false }}>
-                <IconButton aria-label="Open sidebar" icon={ThreeBarsIcon} />
-              </Header.Item>
-            </Header> */}
-          </PageLayout.Header>
+           <PageLayout.Header>
+            <FixedHeader />
+           </PageLayout.Header>
           <PageLayout.Content>
-              <MainContent />
+            <MainContent />
           </PageLayout.Content>
           <PageLayout.Pane resizable="true" position="start" hidden={{ narrow: true }}>
             <Sidebar />

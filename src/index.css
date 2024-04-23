@@ -1,13 +1,17 @@
-@import '@primer/primitives/dist/css/functional/themes/light.css';
-@import '@primer/primitives/dist/css/functional/themes/dark.css';
-@import '@primer/primitives/dist/css/functional/size/border.css';
-
 body[data-color-scheme="day"] {
   background-color: var(--bgColor-light-default, white);
 }
 
 body[data-color-scheme="night"] {
   background-color: var(--bgColor-dark-default, black);
+}
+
+#header[data-color-scheme="day"]  {
+  background-color: yellow;
+}
+
+body[data-color-scheme="night"] #header {
+  background-color: green;
 }
 
 #root {

@@ -4,7 +4,7 @@ import { ThemeProvider, themeGet, BaseStyles, PageLayout, Header,
        } from '@primer/react';
 import Sidebar from './components/Sidebar';
 import MainContent from './components/MainContent';
-import FixedHeader from './pages/FixedHeader';
+import FixedHeader from './components/FixedHeader';
 
 function App() {
   const theme = { themeGet };
@@ -16,12 +16,10 @@ function App() {
   }, [colors])
 
   return (
-    <ThemeProvider colorMode={colors} dayScheme='light' nightScheme='dark_dimmed'>
+    <ThemeProvider colorMode={colors} dayScheme='light' nightScheme='dark'>
       <BaseStyles>
+        <FixedHeader sx={{bg: 'pink'}} />
         <PageLayout>
-           <PageLayout.Header>
-            <FixedHeader />
-           </PageLayout.Header>
           <PageLayout.Content>
             <MainContent />
           </PageLayout.Content>

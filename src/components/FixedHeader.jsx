@@ -6,6 +6,7 @@ import { BaseStyles, useTheme, Octicon, IconButton, Text, ActionMenu, ActionList
 import { FeedTrophyIcon, ThreeBarsIcon, MoonIcon, SunIcon, CheckIcon,
        } from '@primer/octicons-react';
 import { useColorSchemeVar } from '@primer/react';
+import { Hidden } from '@primer/react/drafts';
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -25,7 +26,6 @@ const HeaderWrapper = styled.div`
 
 const ActionGroup = styled.div`
   display: flex;
-  gap: 10px;
 `;
 
 const HeaderLink = styled.a`
@@ -90,36 +90,45 @@ function FixedHeader() {
         <Text fontWeight='bold' fontSize={2}>Grad School Handbook</Text>
       </HeaderLink>
       <ActionGroup id='action-group'>
-        <ActionMenu id='action-menu' onOpenChange={(open) => yeet(open)}>
-        <ActionMenu.Button>Color Mode</ActionMenu.Button>
-        <ActionMenu.Overlay id='action-overlay' width='small'>
-          <ActionList>
-            <ActionList.Item onSelect={() => handleColorSelect('day')}>
-              <ActionList.LeadingVisual>
-                <SunIcon />
-              </ActionList.LeadingVisual>
-              Light Mode
-              {lightOn && 
-                <ActionList.TrailingVisual>
-                  <CheckIcon fill={customCheckFill} />
-                </ActionList.TrailingVisual>
-              }
-            </ActionList.Item>
-            <ActionList.Item onSelect={() => handleColorSelect('night')}>
-              <ActionList.LeadingVisual>
-                <MoonIcon />
-              </ActionList.LeadingVisual>
-              Dark Mode
-              {!lightOn && 
-                <ActionList.TrailingVisual>
-                  <CheckIcon fill={customCheckFill} />
-                </ActionList.TrailingVisual>
-              }
-            </ActionList.Item>
-          </ActionList>
-        </ActionMenu.Overlay>
-      </ActionMenu>
-      <IconButton icon={ThreeBarsIcon}></IconButton>
+        <Hidden when={['narrow']}>
+          <ActionMenu id='action-menu'>
+            <ActionMenu.Button>Color Mode</ActionMenu.Button>
+            <ActionMenu.Overlay id='action-overlay' width='small'>
+              <ActionList>
+                <ActionList.Item onSelect={() => handleColorSelect('day')}>
+                  <ActionList.LeadingVisual>
+                    <SunIcon />
+                  </ActionList.LeadingVisual>
+                  Light Mode
+                  {lightOn && 
+                    <ActionList.TrailingVisual>
+                      <CheckIcon fill={customCheckFill} />
+                    </ActionList.TrailingVisual>
+                  }
+                </ActionList.Item>
+                <ActionList.Item onSelect={() => handleColorSelect('night')}>
+                  <ActionList.LeadingVisual>
+                    <MoonIcon />
+                  </ActionList.LeadingVisual>
+                  Dark Mode
+                  {!lightOn && 
+                    <ActionList.TrailingVisual>
+                      <CheckIcon fill={customCheckFill} />
+                    </ActionList.TrailingVisual>
+                  }
+                </ActionList.Item>
+              </ActionList>
+            </ActionMenu.Overlay>
+          </ActionMenu>
+        </Hidden>
+        <Hidden when={['regular', 'wide']}>
+          <IconButton 
+            icon={ThreeBarsIcon}
+            aria-labelledby='open menu' 
+            onClick={() => window.dispatchEvent(new Event('open menu'))}
+            sx={{marginLeft: '10px'}}
+          ></IconButton>
+        </Hidden>
       </ActionGroup>
        {/* <Text id='toggle' fontWeight='bold' fontSize={1}>Dark Mode</Text>
       <ToggleSwitch size='medium' aria-labelledby='toggle' onChange={(isChecked) => handleToggle(isChecked)} /> */}

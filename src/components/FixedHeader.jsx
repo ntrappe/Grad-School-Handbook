@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import styled from 'styled-components';
 import { BaseStyles, useTheme, Octicon, IconButton, Text, ActionMenu, ActionList,
          ToggleSwitch,
@@ -9,7 +9,10 @@ import { useColorSchemeVar } from '@primer/react';
 
 const HeaderWrapper = styled.div`
   display: flex;
-  position: sticky;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   border-width: 1px;
   border-style: solid;
   border-color: ${props => props.borderColor};
@@ -17,6 +20,12 @@ const HeaderWrapper = styled.div`
   padding: 12px 20px;
   justify-content: space-between;
   align-items: center;
+  z-index: 50;
+`;
+
+const ActionGroup = styled.div`
+  display: flex;
+  gap: 10px;
 `;
 
 const HeaderLink = styled.a`
@@ -63,6 +72,7 @@ function FixedHeader() {
   //   }
   // }
 
+
   const handleColorSelect = (mode) => {
     if (mode === 'day') {
       window.dispatchEvent(new Event('set day'));
@@ -79,9 +89,10 @@ function FixedHeader() {
         <Octicon icon={FeedTrophyIcon} size={20} aria-label='trophy-icon'/>
         <Text fontWeight='bold' fontSize={2}>Grad School Handbook</Text>
       </HeaderLink>
-      <ActionMenu>
+      <ActionGroup id='action-group'>
+        <ActionMenu id='action-menu' onOpenChange={(open) => yeet(open)}>
         <ActionMenu.Button>Color Mode</ActionMenu.Button>
-        <ActionMenu.Overlay width='small'>
+        <ActionMenu.Overlay id='action-overlay' width='small'>
           <ActionList>
             <ActionList.Item onSelect={() => handleColorSelect('day')}>
               <ActionList.LeadingVisual>
@@ -90,7 +101,7 @@ function FixedHeader() {
               Light Mode
               {lightOn && 
                 <ActionList.TrailingVisual>
-                  <CheckIcon fill='green'/>
+                  <CheckIcon fill={customCheckFill} />
                 </ActionList.TrailingVisual>
               }
             </ActionList.Item>
@@ -101,13 +112,15 @@ function FixedHeader() {
               Dark Mode
               {!lightOn && 
                 <ActionList.TrailingVisual>
-                  <CheckIcon fill={customCheckFill}/>
+                  <CheckIcon fill={customCheckFill} />
                 </ActionList.TrailingVisual>
               }
             </ActionList.Item>
           </ActionList>
         </ActionMenu.Overlay>
       </ActionMenu>
+      <IconButton icon={ThreeBarsIcon}></IconButton>
+      </ActionGroup>
        {/* <Text id='toggle' fontWeight='bold' fontSize={1}>Dark Mode</Text>
       <ToggleSwitch size='medium' aria-labelledby='toggle' onChange={(isChecked) => handleToggle(isChecked)} /> */}
     </HeaderWrapper>

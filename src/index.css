@@ -18,6 +18,11 @@ body[data-color-scheme="night"] #header {
   background-color: inherit;
 }
 
+/* They dumb and hard-coded the overlay portal to z-index of 1 so it gets hidden */
+#root > div > div > div {
+  z-index: 100 !important;
+} 
+
 /* Remove once I can import from the official @primer/primitives .css files */
 :root {
   --bgColor-light-default: #ffffff;

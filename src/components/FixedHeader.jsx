@@ -43,8 +43,8 @@ const HeaderLink = styled.a`
 
 
 function FixedHeader() {
-  const [lightOn, setLightOn] = useState(true);
-  const { theme } = useTheme();   // retrieve theme passed down from parent
+  const { theme, colorMode } = useTheme();   // retrieve theme passed down from parent
+  const [lightOn, setLightOn] = useState(colorMode === 'day');
 
   /* Replace with colors.light from @primer/primitives when works */
   const customBackground = useColorSchemeVar({
@@ -76,12 +76,15 @@ function FixedHeader() {
   const handleColorSelect = (mode) => {
     if (mode === 'day') {
       window.dispatchEvent(new Event('set day'));
-      setLightOn(true);
     } else {
       window.dispatchEvent(new Event('set night'));
-      setLightOn(false);
     }
   }
+
+  useEffect(() => {
+    window.addEventListener('set night', () => setLightOn(false));
+    window.addEventListener('set day', () => setLightOn(true));
+  }, [lightOn]);
 
   return (
     <HeaderWrapper bg={customBackground} borderColor={customBorder}>

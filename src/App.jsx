@@ -43,26 +43,26 @@ function App() {
     <ThemeProvider colorMode={colors} dayScheme='light' nightScheme='dark'>
       <BaseStyles>
         <FixedHeader />
-        <Hidden when={['regular', 'wide']}>
-          {showMobileMenu && <MobileMenu />}
-        </Hidden>
-        <SplitPageLayout sx={{marginTop: '3em'}}>
-          <SplitPageLayout.Content>
-            <MainContent />
-            {/* <Pagination pageCount={3} currentPage={1} showPages={{ narrow: false }}/> */}
-          </SplitPageLayout.Content>
-          <SplitPageLayout.Pane
-              id='menu'
-              resizable='true' 
-              aria-labelledby='menu' 
-              position='start' 
-              hidden={{ narrow: true }}
-          >
-            <MenuList />
-          </SplitPageLayout.Pane>
-          {/* <SplitPageLayout.Footer>
-          </SplitPageLayout.Footer> */}
-        </SplitPageLayout>
+        {showMobileMenu && <MobileMenu />}
+        {!showMobileMenu &&
+          <SplitPageLayout sx={{marginTop: '3em'}}>
+            <SplitPageLayout.Content>
+              <MainContent />
+              {/* <Pagination pageCount={3} currentPage={1} showPages={{ narrow: false }}/> */}
+            </SplitPageLayout.Content>
+            <SplitPageLayout.Pane
+                id='menu'
+                resizable='true' 
+                aria-labelledby='menu' 
+                position='start' 
+                hidden={{ narrow: true }}
+            >
+              <MenuList />
+            </SplitPageLayout.Pane>
+            {/* <SplitPageLayout.Footer>
+            </SplitPageLayout.Footer> */}
+          </SplitPageLayout>
+        }
       </BaseStyles>
     </ThemeProvider>
   )

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import {ThemeProvider, BaseStyles, NavList, Heading} from '@primer/react'
 import GettingStarted from '../pages/GettingStarted';
 import Degree from '../pages/Degree';
 import BoostProfile from '../pages/BoostProfile';
@@ -19,19 +18,12 @@ function MainContent() {
     window.addEventListener('popstate', () => updatePageRef(window.location.pathname));
   });
 
-  useEffect(() => {
-    console.log('local var pageRef now', pageRef);
-    console.log('local var pageOrigin now', pageOrigin);
-  }, [pageRef, pageOrigin]);
-
   return (
-    <ThemeProvider>
-      <BaseStyles>
-        { pageRef === '/' && <GettingStarted /> }
-        { pageRef === '/choose-degree' && <Degree /> }
-        { pageRef === '/boost-profile' && <BoostProfile /> }
-      </BaseStyles>
-    </ThemeProvider>
+    <>
+      { pageRef === '/' && <GettingStarted /> }
+      { pageRef === '/choose-degree' && <Degree /> }
+      { pageRef === '/boost-profile' && <BoostProfile /> }
+    </>
   )
 }
 

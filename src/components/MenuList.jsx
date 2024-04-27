@@ -4,18 +4,27 @@ import React, { useState, useEffect } from 'react';
 import { MegaphoneIcon, PasteIcon, CodeOfConductIcon, SunIcon, UnverifiedIcon, TableIcon,
          ProjectRoadmapIcon, MentionIcon,
        } from '@primer/octicons-react';
-import { LandingPage, PreparationPages, ApplicationPages } from '../lib/constants';
-import { renderStatusIcon, renderPageIcon, fetchAllPageStatuses } from '../lib/helpers';
+import { LandingPage, PreparationPages, ApplicationPages, STORAGE_PROGESS_VISIBILITY,
+         SHOW_PROGRESS_EVENT, HIDE_PROGRESS_EVENT, STATUS_VISIBLE, STATUS_HIDDEN,
+       } from '../lib/constants';
+import { renderStatusIcon, renderPageIcon, fetchAllPageStatuses, getProgressVisibility,
+       } from '../lib/helpers';
 
 function MenuList() {
   const [pageOrigin, setPageOrigin] = useState(window.location.origin);
   const [pageRef, setPageRef] = useState(window.location.pathname);
   const [statusIdx, setStatusIdx] = useState(fetchAllPageStatuses());
+  const [showProgress, setShowProgress] = useState(STATUS_VISIBLE === getProgressVisibility());
 
   /* Listen for changes in url and save new href */
   useEffect(() => {
     window.addEventListener('popstate', () => setPageRef(window.location.pathname));
     window.addEventListener('popstate', () => setPageOrigin(window.location.origin));
+  });
+
+  useEffect(() => {
+    window.addEventListener(SHOW_PROGRESS_EVENT, () => setShowProgress(true));
+    window.addEventListener(HIDE_PROGRESS_EVENT, () => setShowProgress(false));
   });
 
   useEffect(() => {
@@ -58,9 +67,11 @@ function MenuList() {
             </NavList.LeadingVisual>
               {page.name}
             {/* Using page pos => status mapping to render icon */}
-            {/* <NavList.TrailingVisual>
-              {renderStatusIcon(statusIdx[page.pos])}
-            </NavList.TrailingVisual> */}
+            {showProgress &&
+              <NavList.TrailingVisual>
+                {renderStatusIcon(statusIdx[page.pos])}
+              </NavList.TrailingVisual>
+            }
           </NavList.Item>
         ))}
       </NavList.Group>
@@ -77,9 +88,11 @@ function MenuList() {
             </NavList.LeadingVisual>
               {page.name}
             {/* Using page pos => status mapping to render icon */}
-            {/* <NavList.TrailingVisual>
-              {renderStatusIcon(statusIdx[page.pos])}
-            </NavList.TrailingVisual> */}
+            {showProgress &&
+              <NavList.TrailingVisual>
+                {renderStatusIcon(statusIdx[page.pos])}
+              </NavList.TrailingVisual>
+            }
           </NavList.Item>
         ))}
       </NavList.Group>

@@ -5,6 +5,10 @@ export const STATUS_COMPLETED = 2;
 export const STATUS_SKIPPED = 3;
 export const STATUS_ABANDONED = 4;
 
+export const STATUS_VISIBLE = 'Visible';
+export const STATUS_HIDDEN = 'Hidden';
+export const STORAGE_PROGESS_VISIBILITY = 'progress-visibility';
+
 export const statusLabels = [
   {
     name: 'Not Started',
@@ -30,6 +34,8 @@ export const SET_DARK_EVENT = 'set night';
 export const SET_LIGHT_EVENT = 'set day';
 export const OPEN_MENU_EVENT = 'open menu';
 export const CLOSE_MENU_EVENT = 'close menu';
+export const SHOW_PROGRESS_EVENT = 'show progress';
+export const HIDE_PROGRESS_EVENT = 'hide progress';
 /* -------- End Constants for all the unique events -------- */
 
 /* ----------- Constants for all the pages on site ----------- */

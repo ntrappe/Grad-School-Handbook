@@ -9,7 +9,8 @@ import { HomeIcon, MailIcon, FileDirectoryIcon, MortarBoardIcon, LogIcon, People
 import { STATUS_NOT_STARTED, STATUS_IN_PROGRESS, STATUS_COMPLETED, STATUS_SKIPPED, 
          STATUS_ABANDONED, LandingPage, PreparationPages, ApplicationPages, LIGHT_THEME,
          DARK_THEME, SET_DARK_EVENT, SET_LIGHT_EVENT, OPEN_MENU_EVENT, STORAGE_THEME,
-         BODY_THEME,
+         BODY_THEME, SHOW_PROGRESS_EVENT, HIDE_PROGRESS_EVENT, STORAGE_PROGESS_VISIBILITY,
+         STATUS_HIDDEN,
        } from './constants';
 
 /**
@@ -141,5 +142,17 @@ export const setDefaultColorScheme = () => {
     window.localStorage.setItem(STORAGE_THEME, LIGHT_THEME);
     body.setAttribute(BODY_THEME, LIGHT_THEME);
     return LIGHT_THEME;
+  }
+}
+
+export const getProgressVisibility = () => {
+  const progress = window.localStorage.getItem(STORAGE_PROGESS_VISIBILITY);
+
+  if (progress) {
+    return progress;
+  } else {
+    // By default, progress is hidden so save that as first value
+    window.localStorage.setItem(STORAGE_PROGESS_VISIBILITY, STATUS_HIDDEN);
+    return STATUS_HIDDEN;
   }
 }

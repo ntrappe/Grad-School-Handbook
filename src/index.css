@@ -1,0 +1,104 @@
+body[data-color-mode="day"] {
+  background-color: var(--bgColor-light-default, white);
+
+  #header {
+    background-color: yellow;
+  }
+}
+
+body[data-color-mode="night"] {
+  background-color: var(--bgColor-dark-default, black);
+
+  #header {
+    background-color: green;
+  }
+}
+
+#root {
+  background-color: inherit;
+
+  > div > div > div {
+    z-index: 100 !important; /* They dumb and hard-coded z-index to 1 so covered */
+  }
+}
+
+#header-wrapper {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 12px 20px;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 50;
+  border-width: 1px;
+  border-style: solid;
+}
+
+#header-title {
+  display: flex;
+  cursor: pointer;
+  height: fit-content;
+  width: fit-content;
+  align-items: center;
+  text-decoration: none;
+
+  svg {
+    margin-bottom: 0;
+    margin-right: 10px;
+  }
+}
+
+#header-title:hover {
+  text-decoration: underline;
+}
+
+#action-group {
+  display: flex;
+}
+
+#mobile-menu-wrapper {
+  width: 100%;
+  height: 100%;
+  z-index: 55;
+}
+
+#mobile-menu-header {
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  display: flex;
+  flex-direction: row;
+  padding: 12px 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#dark-mode-toggle-box {
+  display: flex;
+  align-items: start;
+  margin-top: 5px;
+  padding: 20px 15px;
+  margin-bottom: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  #action-overlay > div {
+    display: none;
+  }
+}
+
+:root {
+  --fgColor-light-default: #1f2328;
+  --fgColor-light-muted: #636c76;
+  --fgColor-dark-default: #e7edf2;
+  --fgColor-dark-muted: #868d96;
+
+  --bgColor-light-default: #ffffff;
+  --bgColor-light-muted: #f6f8fa;
+  --bgColor-dark-default: #0e1116;
+  --bgColor-dark-muted: #171b21;
+}

@@ -14,8 +14,10 @@
     "@primer/octicons-react": "^19.9.0",
     "@primer/primitives": "^7.10.0",
     "@primer/react": "^36.15.0",
+    "@primer/react-brand": "^0.32.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-usestateref": "^1.0.8",
     "url-change-event": "^0.1.7"
   },
   "devDependencies": {

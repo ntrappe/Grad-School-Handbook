@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import {ThemeProvider, BaseStyles, NavList, Heading} from '@primer/react'
 import GettingStarted from '../pages/GettingStarted';
 import Degree from '../pages/Degree';
-import Area from '../pages/Area';
-import Growth from '../pages/Growth';
+import BoostProfile from '../pages/BoostProfile';
 
 function MainContent() {
   const [pageRef, setPageRef] = useState(window.location.pathname);
@@ -17,9 +16,8 @@ function MainContent() {
     <ThemeProvider>
       <BaseStyles>
         { pageRef === '/' && <GettingStarted /> }
-        { pageRef === '/degree' && <Degree /> }
-        { pageRef === '/area' && <Area /> }
-        { pageRef === '/growth' && <Growth /> }
+        { pageRef === '/choose-degree' && <Degree /> }
+        { pageRef === '/boost-profile' && <BoostProfile /> }
       </BaseStyles>
     </ThemeProvider>
   )

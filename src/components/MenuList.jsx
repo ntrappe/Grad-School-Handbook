@@ -1,122 +1,85 @@
-import {ThemeProvider, BaseStyles, NavList, Heading} from '@primer/react';
+import { NavList } from '@primer/react';
 import React, { useState, useEffect } from 'react';
 /* Icons from https://primer.style/foundations/icons */
-import { HomeIcon, MailIcon, FileDirectoryIcon, MortarBoardIcon,
-         LogIcon, PeopleIcon, MegaphoneIcon, GoalIcon, ReadIcon,
-         ThumbsupIcon, CodeOfConductIcon, PasteIcon, CalendarIcon,
-         UnverifiedIcon, ProjectRoadmapIcon, PencilIcon, SunIcon,
-         PlusCircleIcon, TableIcon, CommentDiscussionIcon, MentionIcon,
+import { MegaphoneIcon, PasteIcon, CodeOfConductIcon, SunIcon, UnverifiedIcon, TableIcon,
+         ProjectRoadmapIcon, MentionIcon,
        } from '@primer/octicons-react';
+import { LandingPage, PreparationPages, ApplicationPages } from '../lib/constants';
+import { renderStatusIcon, renderPageIcon, fetchAllPageStatuses } from '../lib/helpers';
 
-function Sidebar() {
+function MenuList() {
   const [pageRef, setPageRef] = useState(window.location.pathname);
+  const [statusIdx, setStatusIdx] = useState(fetchAllPageStatuses());
 
   /* Listen for changes in url and save new href */
   useEffect(() => {
     window.addEventListener('popstate', () => setPageRef(window.location.pathname));
   });
 
+  useEffect(() => {
+    PreparationPages.forEach((page) => {
+      window.addEventListener('update status' + page.ref, (event) => {
+        const nextIdx = statusIdx.map((s, i) => {
+          if (i === page.pos) {
+            return event.detail.status();
+          } else {
+            return s;
+          }
+        });
+        setStatusIdx(nextIdx);
+      });
+    });
+  });
+
   return (
     <NavList>
-      <NavList.Item 
-          href="/" 
-          aria-current={pageRef === "/" ? 'page' : 'false'}>
+      <NavList.Item
+        href={LandingPage[0].ref}
+        aria-current={pageRef === LandingPage[0].ref ? 'page' : 'false'}
+      >
         <NavList.LeadingVisual>
-          <HomeIcon />
+          {/* Using page pos => icon mapping to render icon */}
+          {renderPageIcon(LandingPage[0].pos)}
         </NavList.LeadingVisual>
-        Getting Started
+        {LandingPage[0].name}
       </NavList.Item>
-      <NavList.Group title="Preparation">
-        <NavList.Item 
-            href="/degree"  
-            aria-current={pageRef === "/degree" ? 'page' : 'false'}>
-          <NavList.LeadingVisual>
-            <LogIcon />
-          </NavList.LeadingVisual>
-          Choose Your Degree
-        </NavList.Item>
-        <NavList.Item 
-            href="/area"
-            aria-current={pageRef === "/area" ? 'page' : 'false'}>
-          <NavList.LeadingVisual>
-            <GoalIcon />
-          </NavList.LeadingVisual>
-          Identify Your Area
-        </NavList.Item>
-        <NavList.Item 
-            href="/growth"
-            aria-current={pageRef === "/growth" ? 'page' : 'false'}>
-          <NavList.LeadingVisual>
-            <PlusCircleIcon />
-          </NavList.LeadingVisual>
-          Grow Your Experience
-        </NavList.Item>
-        <NavList.Item 
-            href="/team"
-            aria-current={pageRef === "/team" ? 'page' : 'false'}>
-          <NavList.LeadingVisual>
-            <PeopleIcon />
-          </NavList.LeadingVisual>
-          Build Your Team
-        </NavList.Item>
-        <NavList.Item 
-            href="/school"
-            aria-current={pageRef === "/school" ? 'page' : 'false'}>
-          <NavList.LeadingVisual>
-            <MortarBoardIcon />
-          </NavList.LeadingVisual>
-          Select Schools
-        </NavList.Item>
-        <NavList.Item 
-            href="/interview-students"
-            aria-current={pageRef === "/interview-students" ? 'page' : 'false'}>
-          <NavList.LeadingVisual>
-            <CommentDiscussionIcon />
-          </NavList.LeadingVisual>
-          Interview Students
-        </NavList.Item>
-        <NavList.Item 
-            href="/contact-supervisors"
-            aria-current={pageRef === "/contact-supervisors" ? 'page' : 'false'}>
-          <NavList.LeadingVisual>
-            <MailIcon />
-          </NavList.LeadingVisual>
-          Contact Supervisors
-        </NavList.Item>
+      <NavList.Group title='Preparation'>
+        {PreparationPages.map((page, index) => (
+          <NavList.Item 
+            key={index}
+            href={page.ref} 
+            aria-current={pageRef === page.ref ? 'page' : 'false'}
+          >
+            <NavList.LeadingVisual>
+              {/* Using page pos => icon mapping to render icon */}
+              {renderPageIcon(page.pos)}
+            </NavList.LeadingVisual>
+              {page.name}
+            {/* Using page pos => status mapping to render icon */}
+            {/* <NavList.TrailingVisual>
+              {renderStatusIcon(statusIdx[page.pos])}
+            </NavList.TrailingVisual> */}
+          </NavList.Item>
+        ))}
       </NavList.Group>
-      <NavList.Group title="Application">
-        <NavList.Item
-            href="/plan"
-            aria-current={pageRef === "/plan" ? 'page' : 'false'}>
-          <NavList.LeadingVisual>
-            <CalendarIcon />
-          </NavList.LeadingVisual>
-          Make a Plan
-        </NavList.Item>
-        <NavList.Item 
-            href="/materials"
-            aria-current={pageRef === "/materials" ? 'page' : 'false'}>
-          <NavList.LeadingVisual>
-            <FileDirectoryIcon />
-          </NavList.LeadingVisual>
-          Prepare Materials
-        </NavList.Item>
-        <NavList.Item 
-            href="/letters"
-            aria-current={pageRef === "/letters" ? 'page' : 'false'}>
-          <NavList.LeadingVisual>
-            <ReadIcon />
-          </NavList.LeadingVisual>
-          Letters of Recommendation
-        </NavList.Item>
-        <NavList.Item 
-            href="/essays"
-            aria-current={pageRef === "/essays" ? 'page' : 'false'}>
-          <NavList.LeadingVisual>
-            <PencilIcon />
-          </NavList.LeadingVisual>
-          Write Statements
-        </NavList.Item>
+      <NavList.Group title='Application'>
+        {ApplicationPages.map((page, index) => (
+          <NavList.Item 
+            key={index}
+            href={page.ref} 
+            aria-current={pageRef === page.ref ? 'page' : 'false'}
+          >
+            <NavList.LeadingVisual>
+              {/* Using page pos => icon mapping to render icon */}
+              {renderPageIcon(page.pos)}
+            </NavList.LeadingVisual>
+              {page.name}
+            {/* Using page pos => status mapping to render icon */}
+            {/* <NavList.TrailingVisual>
+              {renderStatusIcon(statusIdx[page.pos])}
+            </NavList.TrailingVisual> */}
+          </NavList.Item>
+        ))}
       </NavList.Group>
       <NavList.Group title="Post-Application">
         <NavList.Item 
@@ -191,4 +154,4 @@ function Sidebar() {
   )
 }
 
-export default Sidebar;
+export default MenuList;

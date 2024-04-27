@@ -7,11 +7,4 @@ ReactDOM.createRoot( document.getElementById('root')).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-)
-
-// After rendering app, listen for color events changing
-document.addEventListener('DOMContentLoaded', function() {
-  const body = document.getElementById('body');
-  window.addEventListener('set night', () => body.setAttribute('data-color-scheme', 'night'));
-  window.addEventListener('set day', () => body.setAttribute('data-color-scheme', 'day'));
-});
+);

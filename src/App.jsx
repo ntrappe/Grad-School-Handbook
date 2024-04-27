@@ -5,35 +5,12 @@ import MainContent from './components/MainContent';
 import FixedHeader from './components/FixedHeader';
 import MobileMenu from './components/MobileMenu';
 import ProgressSection from './components/ProgressSection';
+import { setDefaultColorScheme } from './lib/helpers';
+import { LIGHT_THEME, DARK_THEME, STORAGE_THEME, BODY_THEME, SET_DARK_EVENT, SET_LIGHT_EVENT,
+         OPEN_MENU_EVENT, CLOSE_MENU_EVENT 
+       } from './lib/constants';
 
-const LIGHT_THEME = 'day';
-const DARK_THEME = 'night';
-const STORAGE_THEME = 'data-color-scheme';
-const BODY_THEME = 'data-color-mode';
-const SET_DARK_EVENT = 'set night';
-const SET_LIGHT_EVENT = 'set day';
-const OPEN_MENU_EVENT = 'open menu';
-const CLOSE_MENU_EVENT = 'close menu';
 const NARROW_PIXELS = 768;
-
-/**
- * Utility function to set the color scheme of the app on load
- * @returns string Name of data color scheme
- */
-const setDefaultColorScheme = () => {
-  const body = document.getElementById('body');
-  const currScheme = window.localStorage.getItem(STORAGE_THEME);
-  if (currScheme) {
-    console.log('Using existing color scheme: ', currScheme);
-    body.setAttribute(BODY_THEME, currScheme);
-    return currScheme;
-  } else {
-    console.log('No existing color scheme, default to day');
-    window.localStorage.setItem(STORAGE_THEME, LIGHT_THEME);
-    body.setAttribute(BODY_THEME, LIGHT_THEME);
-    return LIGHT_THEME;
-  }
-}
 
 
 function App() {
@@ -92,7 +69,7 @@ function App() {
         <FixedHeader />
         {showMobileMenu && <MobileMenu />}
         {!showMobileMenu &&
-          <SplitPageLayout sx={{marginTop: '3.3em'}}>
+          <SplitPageLayout sx={{marginTop: '3.75em'}}>
             <SplitPageLayout.Content sx={{paddingTop: '0.5rem'}}>
               <MainContent />
               {/* <Pagination pageCount={3} currentPage={1} showPages={{ narrow: false }}/> */}

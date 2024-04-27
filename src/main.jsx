@@ -7,6 +7,6 @@ import App from './App.jsx';
 
 ReactDOM.createRoot( document.getElementById('root')).render(
   <React.StrictMode>
-    <h2>hello world</h2>
+    <App />
   </React.StrictMode>,
 );

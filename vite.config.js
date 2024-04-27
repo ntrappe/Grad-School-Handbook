@@ -1,19 +1,22 @@
 import { defineConfig } from 'vite';
 import legacy from '@vitejs/plugin-legacy';
 import react from '@vitejs/plugin-react';
+import { resolve } from 'path';
 
 export default defineConfig({
   /* set if getting websocket issue when developing */
   server: {
     port: '5173',
-    history: {
-      /* Enable history API fallback
-       * This will rewrite all URLs to index.html rather than trying to 
-       * fetch individual html files for each href change. Allows client-side
-       * routing to work correctly. Single-page support.
-       */
-      fallback: 'index.html',
-    },
+    configureServer: ({ app }) => {
+      app.use((req, res, next) => {
+        // If the request path is not root, serve index.html
+        if (req.url !== '/') {
+          res.sendFule(resolve(__dirname, 'dist', 'index.html'));
+        } else {
+          next();
+        }
+      });
+    }
   },
   plugins: [
     react(),

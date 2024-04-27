@@ -7,7 +7,7 @@ import MobileMenu from './components/MobileMenu';
 import ProgressSection from './components/ProgressSection';
 import { setDefaultColorScheme } from './lib/helpers';
 import { LIGHT_THEME, DARK_THEME, STORAGE_THEME, BODY_THEME, SET_DARK_EVENT, SET_LIGHT_EVENT,
-         OPEN_MENU_EVENT, CLOSE_MENU_EVENT 
+         OPEN_MENU_EVENT, CLOSE_MENU_EVENT, HEADER_LAYOUT_GAP,
        } from './lib/constants';
 
 const NARROW_PIXELS = 768;
@@ -69,7 +69,7 @@ function App() {
         <FixedHeader />
         {showMobileMenu && <MobileMenu />}
         {!showMobileMenu &&
-          <SplitPageLayout sx={{marginTop: '3.75em'}}>
+          <SplitPageLayout sx={{marginTop: HEADER_LAYOUT_GAP}}>
             <SplitPageLayout.Content sx={{paddingTop: '0.5rem'}}>
               <MainContent />
               {/* <Pagination pageCount={3} currentPage={1} showPages={{ narrow: false }}/> */}

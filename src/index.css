@@ -32,8 +32,10 @@ body[data-color-mode="night"] {
   justify-content: space-between;
   align-items: center;
   z-index: 50;
-  border-width: 1px;
-  border-style: solid;
+  border-top-width: 1px;
+  border-bottom-width: 1px;
+  border-top-style: solid;
+  border-bottom-style: solid;
 }
 
 #header-title {
@@ -80,7 +82,7 @@ body[data-color-mode="night"] {
 #dark-mode-toggle-box {
   display: flex;
   align-items: start;
-  margin-top: 5px;
+  margin-top: 7px;
   padding: 20px 15px;
   margin-bottom: 10px;
 }

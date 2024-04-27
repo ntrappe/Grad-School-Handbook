@@ -9,8 +9,18 @@ function MainContent() {
 
   /* Listen for changes in url and save new href */
   useEffect(() => {
-    window.addEventListener('popstate', () => setPageRef(window.location.pathname));
+    const updatePageRef = (path) => {
+      console.log('heard a change in url with: ');
+      console.log('pathname: ', path);
+      console.log('query full url: ', window.location);
+      setPageRef(window.location.pathname);
+    } 
+    window.addEventListener('popstate', () => updatePageRef(window.location.pathname));
   });
+
+  useEffect(() => {
+    console.log('local var pageRef now', pageRef);
+  }, [pageRef]);
 
   return (
     <ThemeProvider>

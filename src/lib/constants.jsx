@@ -103,5 +103,7 @@ export const LIGHT_THEME = 'day';
 export const DARK_THEME = 'night';
 export const STORAGE_THEME = 'data-color-scheme';
 export const BODY_THEME = 'data-color-mode';
+export const MOBILE_HEADER_MENU_GAP = '3.5em';
+export const HEADER_LAYOUT_GAP = '3.75em';
 
 /* --------------- End Constants for aesthetics -------------- */

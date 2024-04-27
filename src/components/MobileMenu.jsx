@@ -7,7 +7,8 @@ import { XIcon } from '@primer/octicons-react';
 import { useColorSchemeVar } from '@primer/react';
 import MenuList from './MenuList';
 import { handleColorToggle } from '../lib/helpers';
-import { LIGHT_THEME, SET_DARK_EVENT, SET_LIGHT_EVENT, CLOSE_MENU_EVENT } from '../lib/constants';
+import { LIGHT_THEME, SET_DARK_EVENT, SET_LIGHT_EVENT, CLOSE_MENU_EVENT, MOBILE_HEADER_MENU_GAP,
+       } from '../lib/constants';
 
 
 const MenuWrapper = styled.div`
@@ -58,7 +59,7 @@ function MobileMenu() {
           onClick={() => window.dispatchEvent(new Event(CLOSE_MENU_EVENT))}
         ></IconButton>
       </MenuHeader>
-      <SplitPageLayout sx={{marginTop: '3.2em'}}>
+      <SplitPageLayout sx={{marginTop: MOBILE_HEADER_MENU_GAP}}>
         <SplitPageLayout.Content position='start' hidden={{ regular: true }}>
           <MenuList/>
           <BoxStyled id='dark-mode-toggle-box' borderColor={customBorder}>
@@ -67,7 +68,7 @@ function MobileMenu() {
                 Dark Mode
               </Text>
               <Text color='fg.subtle' fontSize={1} display='block'>
-                Toggle on for dark mode. Off for light mode.
+                Toggle on for dark mode.
               </Text>
             </Box>
             <ToggleSwitch 

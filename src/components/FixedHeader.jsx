@@ -4,7 +4,9 @@ import { useTheme, Octicon, IconButton, Text, ActionMenu, ActionList, Box } from
 import { FeedTrophyIcon, ThreeBarsIcon, MoonIcon, SunIcon, CheckIcon } from '@primer/octicons-react';
 import { useColorSchemeVar } from '@primer/react';
 import { Hidden } from '@primer/react/drafts';
-import { SET_DARK_EVENT, SET_LIGHT_EVENT, OPEN_MENU_EVENT, LIGHT_THEME, DARK_THEME } from '../lib/constants';
+import { handleColorSelect } from '../lib/helpers';
+import { SET_DARK_EVENT, SET_LIGHT_EVENT, OPEN_MENU_EVENT, LIGHT_THEME, DARK_THEME,
+       } from '../lib/constants';
 
 
 const HeaderWrapper = styled.div`

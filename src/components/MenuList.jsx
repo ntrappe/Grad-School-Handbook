@@ -8,12 +8,14 @@ import { LandingPage, PreparationPages, ApplicationPages } from '../lib/constant
 import { renderStatusIcon, renderPageIcon, fetchAllPageStatuses } from '../lib/helpers';
 
 function MenuList() {
+  const [pageOrigin, setPageOrigin] = useState(window.location.origin);
   const [pageRef, setPageRef] = useState(window.location.pathname);
   const [statusIdx, setStatusIdx] = useState(fetchAllPageStatuses());
 
   /* Listen for changes in url and save new href */
   useEffect(() => {
     window.addEventListener('popstate', () => setPageRef(window.location.pathname));
+    window.addEventListener('popstate', () => setPageOrigin(window.location.origin));
   });
 
   useEffect(() => {
@@ -34,7 +36,7 @@ function MenuList() {
   return (
     <NavList>
       <NavList.Item
-        href={LandingPage[0].ref}
+        href={pageOrigin + LandingPage[0].ref}
         aria-current={pageRef === LandingPage[0].ref ? 'page' : 'false'}
       >
         <NavList.LeadingVisual>
@@ -47,7 +49,7 @@ function MenuList() {
         {PreparationPages.map((page, index) => (
           <NavList.Item 
             key={index}
-            href={page.ref} 
+            href={pageOrigin + page.ref} 
             aria-current={pageRef === page.ref ? 'page' : 'false'}
           >
             <NavList.LeadingVisual>
@@ -66,7 +68,7 @@ function MenuList() {
         {ApplicationPages.map((page, index) => (
           <NavList.Item 
             key={index}
-            href={page.ref} 
+            href={pageOrigin + page.ref} 
             aria-current={pageRef === page.ref ? 'page' : 'false'}
           >
             <NavList.LeadingVisual>

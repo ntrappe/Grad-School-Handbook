@@ -5,6 +5,7 @@ import Degree from '../pages/Degree';
 import BoostProfile from '../pages/BoostProfile';
 
 function MainContent() {
+  const [pageOrigin, setPageOrigin] = useState(window.location.origin);
   const [pageRef, setPageRef] = useState(window.location.pathname);
 
   /* Listen for changes in url and save new href */
@@ -20,7 +21,8 @@ function MainContent() {
 
   useEffect(() => {
     console.log('local var pageRef now', pageRef);
-  }, [pageRef]);
+    console.log('local var pageOrigin now', pageOrigin);
+  }, [pageRef, pageOrigin]);
 
   return (
     <ThemeProvider>

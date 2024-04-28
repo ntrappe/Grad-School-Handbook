@@ -11,7 +11,7 @@ export default defineConfig({
       app.use((req, res, next) => {
         // If the request path is not root, serve index.html
         if (req.url !== '/') {
-          res.sendFule(resolve(__dirname, 'dist', 'index.html'));
+          res.sendFile(resolve(__dirname, 'dist', 'index.html'));
         } else {
           next();
         }

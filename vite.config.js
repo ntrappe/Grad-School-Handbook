@@ -16,7 +16,7 @@ export default defineConfig({
       // Intercept request for specific routes and service index.html
       // We want a single-page application, not to serve up an html page per url request
       app.use((req, res, next) => {
-        if (customRoutes.includes(req.url)) {
+        if (acceptedRoutes.includes(req.url)) {
           res.sendFile(resolve(__dirname, 'index.html'));
         } else {
           next();

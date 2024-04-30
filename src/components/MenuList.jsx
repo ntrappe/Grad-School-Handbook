@@ -1,5 +1,6 @@
-import { NavList } from '@primer/react';
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { NavList } from '@primer/react';
 /* Icons from https://primer.style/foundations/icons */
 import { MegaphoneIcon, PasteIcon, CodeOfConductIcon, SunIcon, UnverifiedIcon, TableIcon,
          ProjectRoadmapIcon, MentionIcon,
@@ -36,7 +37,6 @@ function MenuList() {
   return (
     <NavList>
       <NavList.Item
-        href={pageOrigin + LandingPage[0].ref}
         aria-current={pageRef === LandingPage[0].ref ? 'page' : 'false'}
       >
         <NavList.LeadingVisual>
@@ -66,21 +66,23 @@ function MenuList() {
       </NavList.Group>
       <NavList.Group title='Application'>
         {ApplicationPages.map((page, index) => (
-          <NavList.Item 
-            key={index}
-            href={pageOrigin + page.ref} 
-            aria-current={pageRef === page.ref ? 'page' : 'false'}
-          >
-            <NavList.LeadingVisual>
-              {/* Using page pos => icon mapping to render icon */}
-              {renderPageIcon(page.pos)}
-            </NavList.LeadingVisual>
+          <Link to={page.ref} key={index}>
+            <NavList.Item 
+              key={index}
+              href={pageOrigin + page.ref} 
+              aria-current={pageRef === page.ref ? 'page' : 'false'}
+            >
+              <NavList.LeadingVisual>
+                {/* Using page pos => icon mapping to render icon */}
+                {renderPageIcon(page.pos)}
+              </NavList.LeadingVisual>
               {page.name}
-            {/* Using page pos => status mapping to render icon */}
-            {/* <NavList.TrailingVisual>
-              {renderStatusIcon(statusIdx[page.pos])}
-            </NavList.TrailingVisual> */}
-          </NavList.Item>
+              {/* Using page pos => status mapping to render icon */}
+              {/* <NavList.TrailingVisual>
+                {renderStatusIcon(statusIdx[page.pos])}
+              </NavList.TrailingVisual> */}
+            </NavList.Item>
+          </Link>
         ))}
       </NavList.Group>
       <NavList.Group title="Post-Application">
@@ -151,6 +153,7 @@ function MenuList() {
           </NavList.LeadingVisual>
           Build Good Habits
         </NavList.Item>
+        <Link to={`/projects`}>Wow</Link>
       </NavList.Group>
     </NavList>
   )

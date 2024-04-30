@@ -21,8 +21,8 @@ function MainContent() {
   return (
     <>
       { pageRef === '/' && <GettingStarted /> }
-      { pageRef === '/#choose-degree' && <Degree /> }
-      { pageRef === '/#boost-profile' && <BoostProfile /> }
+      { pageRef === '/choose-degree' && <Degree /> }
+      { pageRef === '/boost-profile' && <BoostProfile /> }
     </>
   )
 }

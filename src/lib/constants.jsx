@@ -45,12 +45,12 @@ export const PreparationPages = [
   {
     pos: 1,
     name: 'Choose Your Degree',
-    ref: '/#choose-degree',
+    ref: '/choose-degree',
   },
   {
     pos: 2,
     name: 'Boost Your Profile',
-    ref: '/#boost-profile',
+    ref: '/boost-profile',
   },
   {
     pos: 3,

@@ -1,30 +1,36 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
-import { resolve } from 'path';
+import reactRefresh from '@vitejs/plugin-react-refresh';
+import { createServer } from 'vite';
+import httpProxy from 'http-proxy';
 
-const acceptedRoutes = [
-  '/',
-  '/choose-degree',
-];
+const proxy = httpProxy.createProxyServer({});
+
+proxy.on('proxyReq', (proxyReq, req, res, options) => {
+
+});
 
 export default defineConfig({
-  // set if getting websocket issue when developing
+  plugins: [
+    react(),
+    reactRefresh(),
+  ],
   server: {
-    port: '5173',
-    // Use the configureServer hook to customize server behavior
     configureServer: ({ app }) => {
-      // Intercept request for specific routes and service index.html
-      // We want a single-page application, not to serve up an html page per url request
       app.use((req, res, next) => {
-        if (acceptedRoutes.includes(req.url)) {
-          res.sendFile(resolve(__dirname, 'index.html'));
-        } else {
-          next();
+        const routesToServeIndex = ['/choose-degree', '/boost-profile'];
+
+        if (routesToServeIndex.some((route) => req.url.startsWith(route))) {
+          req.url = '/index.html';
         }
+
+        proxy.web(req, res, {
+          target: 'https://grad-school-handbook.com',
+          changeOrigin: true,
+        });
       });
-    }
+    },
   },
-  plugins: [react()],
   /* set base to '/' for .github.io or custom website */
   /* set base to '/<repo>/' name otherwise */
   base: '/',

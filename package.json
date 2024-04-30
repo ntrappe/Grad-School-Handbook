@@ -15,6 +15,7 @@
     "@primer/primitives": "^7.10.0",
     "@primer/react": "^36.15.0",
     "@primer/react-brand": "^0.32.0",
+    "http-proxy": "^1.18.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-usestateref": "^1.0.8",

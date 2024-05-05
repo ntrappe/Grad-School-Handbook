@@ -15,22 +15,6 @@ export default defineConfig({
     react(),
     reactRefresh(),
   ],
-  server: {
-    configureServer: ({ app }) => {
-      app.use((req, res, next) => {
-        const routesToServeIndex = ['/choose-degree', '/boost-profile'];
-
-        if (routesToServeIndex.some((route) => req.url.startsWith(route))) {
-          req.url = '/index.html';
-        }
-
-        proxy.web(req, res, {
-          target: 'https://grad-school-handbook.com',
-          changeOrigin: true,
-        });
-      });
-    },
-  },
   /* set base to '/' for .github.io or custom website */
   /* set base to '/<repo>/' name otherwise */
   base: '/',

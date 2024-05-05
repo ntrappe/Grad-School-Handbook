@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/boost-profile",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/choose-degree",
+      "destination": "/index.html"
+    }
+  ]
+}

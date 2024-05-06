@@ -63,32 +63,17 @@ function MenuList() {
           {LandingPage[0].name}
       </NavList.Item>
       <NavList.Group title='Preparation'>
-        <NavList.Item
-          href={`/#/choose-degree`}
-          aria-current={pageSelected('/#/choose-degree')}
-        >
-          <NavList.LeadingVisual>
-            {renderPageIcon(1)}
-          </NavList.LeadingVisual>
-            Choose Your Degree
-        </NavList.Item>
-        <NavList.Item
-          href={`/#/boost-profile`}
-          aria-current={pageSelected('/#/boost-profile')}
-        >
-          <NavList.LeadingVisual>
-            {renderPageIcon(2)}
-          </NavList.LeadingVisual>
-          Boost Your Profile
-        </NavList.Item>
-        {/* {PreparationPages.map((page, index) => (
-          <NavList.Item key={index} aria-current={pageSelected(page.ref)}>
+        {PreparationPages.map((page, index) => (
+          <NavList.Item 
+            key={index} 
+            href={'/#' + page.ref}
+            aria-current={pageSelected(page.ref)}>
             <NavList.LeadingVisual>
               {renderPageIcon(page.pos)}
             </NavList.LeadingVisual>
             {page.name}
           </NavList.Item>
-        ))} */}
+        ))}
       </NavList.Group>
       <NavList.Group title='Application'>
         {ApplicationPages.map((page, index) => (

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { HashRouter } from 'react-router-dom';
 import { ThemeProvider, BaseStyles, SplitPageLayout } from '@primer/react';
 import MenuList from './components/MenuList';
 import MainContent from './components/MainContent';
@@ -69,25 +70,26 @@ function App() {
         <FixedHeader />
         {showMobileMenu && <MobileMenu />}
         {!showMobileMenu &&
-          <SplitPageLayout sx={{marginTop: HEADER_LAYOUT_GAP}}>
-            <SplitPageLayout.Content sx={{paddingTop: '0.5rem'}}>
-              <MainContent />
-              {/* <Pagination pageCount={3} currentPage={1} showPages={{ narrow: false }}/> */}
-            </SplitPageLayout.Content>
-            <SplitPageLayout.Pane
-                id='menu'
-                resizable='true' 
-                aria-labelledby='menu' 
-                position='start' 
-                hidden={{ narrow: true }}
-            >
-              <MenuList />
-            </SplitPageLayout.Pane>
-            <SplitPageLayout.Footer>
-              Footer
-              {/* <ProgressSection /> */}
-            </SplitPageLayout.Footer>
-          </SplitPageLayout>
+          <HashRouter>
+            <SplitPageLayout sx={{marginTop: HEADER_LAYOUT_GAP}}>
+              <SplitPageLayout.Content sx={{paddingTop: '0.5rem'}}>
+                <MainContent />
+              </SplitPageLayout.Content>
+              <SplitPageLayout.Pane
+                  id='menu'
+                  resizable='true' 
+                  aria-labelledby='menu' 
+                  position='start' 
+                  hidden={{ narrow: true }}
+              >
+                <MenuList />
+              </SplitPageLayout.Pane>
+              <SplitPageLayout.Footer>
+                Footer
+                {/* <ProgressSection /> */}
+              </SplitPageLayout.Footer>
+            </SplitPageLayout>
+          </HashRouter>
         }
       </BaseStyles>
     </ThemeProvider>

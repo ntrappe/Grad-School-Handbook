@@ -1,20 +1,31 @@
-import { NavList } from '@primer/react';
 import React, { useState, useEffect } from 'react';
+import { NavList } from '@primer/react';
 /* Icons from https://primer.style/foundations/icons */
 import { MegaphoneIcon, PasteIcon, CodeOfConductIcon, SunIcon, UnverifiedIcon, TableIcon,
          ProjectRoadmapIcon, MentionIcon,
        } from '@primer/octicons-react';
 import { LandingPage, PreparationPages, ApplicationPages } from '../lib/constants';
 import { renderStatusIcon, renderPageIcon, fetchAllPageStatuses } from '../lib/helpers';
+import styled from 'styled-components';
+
+// const LinkW = styled(Link)`
+//   display: flex;
+//   text-decoration: none;
+//   color: inherit;
+
+//   &:hover {
+//     text-decoration: none;
+//   }
+// `;
 
 function MenuList() {
   const [pageOrigin, setPageOrigin] = useState(window.location.origin);
-  const [pageRef, setPageRef] = useState(window.location.pathname);
+  const [currentPage, setCurrentPage] = useState(window.location.pathname);
   const [statusIdx, setStatusIdx] = useState(fetchAllPageStatuses());
 
   /* Listen for changes in url and save new href */
   useEffect(() => {
-    window.addEventListener('popstate', () => setPageRef(window.location.pathname));
+    window.addEventListener('popstate', () => setCurrentPage(window.location.pathname));
     window.addEventListener('popstate', () => setPageOrigin(window.location.origin));
   });
 
@@ -33,49 +44,64 @@ function MenuList() {
     });
   });
 
+  const pageSelected = (page) => {
+    if (currentPage === page) {
+      return 'page';
+    } else {
+      return 'false';
+    }
+  }
+
   return (
     <NavList>
-      <NavList.Item
-        href={pageOrigin + LandingPage[0].ref}
-        aria-current={pageRef === LandingPage[0].ref ? 'page' : 'false'}
-      >
+      <NavList.Item 
+        href={`/`}
+        aria-current={pageSelected('/')}>
         <NavList.LeadingVisual>
-          {/* Using page pos => icon mapping to render icon */}
           {renderPageIcon(LandingPage[0].pos)}
         </NavList.LeadingVisual>
-        {LandingPage[0].name}
+          {LandingPage[0].name}
       </NavList.Item>
       <NavList.Group title='Preparation'>
-        {PreparationPages.map((page, index) => (
-          <NavList.Item 
-            key={index}
-            href={pageOrigin + page.ref} 
-            aria-current={pageRef === page.ref ? 'page' : 'false'}
-          >
+        <NavList.Item
+          href={`/#/choose-degree`}
+          aria-current={pageSelected('/#/choose-degree')}
+        >
+          <NavList.LeadingVisual>
+            {renderPageIcon(1)}
+          </NavList.LeadingVisual>
+            Choose Your Degree
+        </NavList.Item>
+        <NavList.Item
+          href={`/#/boost-profile`}
+          aria-current={pageSelected('/#/boost-profile')}
+        >
+          <NavList.LeadingVisual>
+            {renderPageIcon(2)}
+          </NavList.LeadingVisual>
+          Boost Your Profile
+        </NavList.Item>
+        {/* {PreparationPages.map((page, index) => (
+          <NavList.Item key={index} aria-current={pageSelected(page.ref)}>
             <NavList.LeadingVisual>
-              {/* Using page pos => icon mapping to render icon */}
               {renderPageIcon(page.pos)}
             </NavList.LeadingVisual>
-              {page.name}
-            {/* Using page pos => status mapping to render icon */}
-            {/* <NavList.TrailingVisual>
-              {renderStatusIcon(statusIdx[page.pos])}
-            </NavList.TrailingVisual> */}
+            {page.name}
           </NavList.Item>
-        ))}
+        ))} */}
       </NavList.Group>
       <NavList.Group title='Application'>
         {ApplicationPages.map((page, index) => (
           <NavList.Item 
             key={index}
             href={pageOrigin + page.ref} 
-            aria-current={pageRef === page.ref ? 'page' : 'false'}
+            aria-current={currentPage === page.ref ? 'page' : 'false'}
           >
             <NavList.LeadingVisual>
               {/* Using page pos => icon mapping to render icon */}
               {renderPageIcon(page.pos)}
             </NavList.LeadingVisual>
-              {page.name}
+            {page.name}
             {/* Using page pos => status mapping to render icon */}
             {/* <NavList.TrailingVisual>
               {renderStatusIcon(statusIdx[page.pos])}
@@ -86,7 +112,7 @@ function MenuList() {
       <NavList.Group title="Post-Application">
         <NavList.Item 
             href="/prep-interviews"
-            aria-current={pageRef === "/prep-interviews" ? 'page' : 'false'}>
+            aria-current={currentPage === "/prep-interviews" ? 'page' : 'false'}>
           <NavList.LeadingVisual>
             <MegaphoneIcon />
           </NavList.LeadingVisual>
@@ -94,14 +120,14 @@ function MenuList() {
         </NavList.Item>
         <NavList.Item 
             href="/decision"
-            aria-current={pageRef === "/decision" ? 'page' : 'false'}>
+            aria-current={currentPage === "/decision" ? 'page' : 'false'}>
           <NavList.LeadingVisual>
             <UnverifiedIcon />
           </NavList.LeadingVisual>
           Receive the Decision
         </NavList.Item>
         <NavList.Item href="/thanks"
-            aria-current={pageRef === "/thanks" ? 'page' : 'false'}>
+            aria-current={currentPage === "/thanks" ? 'page' : 'false'}>
           <NavList.LeadingVisual>
             <CodeOfConductIcon />
           </NavList.LeadingVisual>
@@ -111,7 +137,7 @@ function MenuList() {
       <NavList.Group title="Examples">
         <NavList.Item 
             href="/personal-statements"
-            aria-current={pageRef === "/personal-statements" ? 'page' : 'false'}>
+            aria-current={currentPage === "/personal-statements" ? 'page' : 'false'}>
           <NavList.LeadingVisual>
             <ProjectRoadmapIcon />
           </NavList.LeadingVisual>
@@ -119,7 +145,7 @@ function MenuList() {
         </NavList.Item>
         <NavList.Item 
             href="/research-proposals"
-            aria-current={pageRef === "/research-proposals" ? 'page' : 'false'}>
+            aria-current={currentPage === "/research-proposals" ? 'page' : 'false'}>
           <NavList.LeadingVisual>
             <PasteIcon />
           </NavList.LeadingVisual>
@@ -127,7 +153,7 @@ function MenuList() {
         </NavList.Item>
         <NavList.Item 
             href="/cv"
-            aria-current={pageRef === "/cv" ? 'page' : 'false'}>
+            aria-current={currentPage === "/cv" ? 'page' : 'false'}>
           <NavList.LeadingVisual>
             <TableIcon />
           </NavList.LeadingVisual>
@@ -135,7 +161,7 @@ function MenuList() {
         </NavList.Item>
         <NavList.Item 
             href="/emails"
-            aria-current={pageRef === "/emails" ? 'page' : 'false'}>
+            aria-current={currentPage === "/emails" ? 'page' : 'false'}>
           <NavList.LeadingVisual>
             <MentionIcon />
           </NavList.LeadingVisual>
@@ -145,7 +171,7 @@ function MenuList() {
       <NavList.Group title="Tips & Tricks">
         <NavList.Item 
             href="/habits"
-            aria-current={pageRef === "/habits" ? 'page' : 'false'}>
+            aria-current={currentPage === "/habits" ? 'page' : 'false'}>
           <NavList.LeadingVisual>
             <SunIcon />
           </NavList.LeadingVisual>

@@ -7,6 +7,7 @@ import { MegaphoneIcon, PasteIcon, CodeOfConductIcon, SunIcon, UnverifiedIcon, T
 import { LandingPage, PreparationPages, ApplicationPages } from '../lib/constants';
 import { renderStatusIcon, renderPageIcon, fetchAllPageStatuses } from '../lib/helpers';
 import styled from 'styled-components';
+import { useLocation } from 'react-router-dom';
 
 // const LinkW = styled(Link)`
 //   display: flex;
@@ -19,15 +20,14 @@ import styled from 'styled-components';
 // `;
 
 function MenuList() {
-  const [pageOrigin, setPageOrigin] = useState(window.location.origin);
-  const [currentPage, setCurrentPage] = useState(window.location.pathname);
+  const location = useLocation();
+
+  const [currentPage, setCurrentPage] = useState(location.pathname);
   const [statusIdx, setStatusIdx] = useState(fetchAllPageStatuses());
 
-  /* Listen for changes in url and save new href */
   useEffect(() => {
-    window.addEventListener('popstate', () => setCurrentPage(window.location.pathname));
-    window.addEventListener('popstate', () => setPageOrigin(window.location.origin));
-  });
+    console.log('currentPage: ' + currentPage);
+  }, [currentPage]);
 
   useEffect(() => {
     PreparationPages.forEach((page) => {
@@ -44,8 +44,8 @@ function MenuList() {
     });
   });
 
-  const pageSelected = (page) => {
-    if (currentPage === page) {
+  const isPageSelected = (ref) => {
+    if (location.pathname === ref) {
       return 'page';
     } else {
       return 'false';
@@ -55,8 +55,8 @@ function MenuList() {
   return (
     <NavList>
       <NavList.Item 
-        href={`/`}
-        aria-current={pageSelected('/')}>
+        href={'/'}
+        aria-current={isPageSelected('/')}>
         <NavList.LeadingVisual>
           {renderPageIcon(LandingPage[0].pos)}
         </NavList.LeadingVisual>
@@ -67,7 +67,7 @@ function MenuList() {
           <NavList.Item 
             key={index} 
             href={'/#' + page.ref}
-            aria-current={pageSelected(page.ref)}>
+            aria-current={isPageSelected(page.ref)}>
             <NavList.LeadingVisual>
               {renderPageIcon(page.pos)}
             </NavList.LeadingVisual>
@@ -79,8 +79,8 @@ function MenuList() {
         {ApplicationPages.map((page, index) => (
           <NavList.Item 
             key={index}
-            href={pageOrigin + page.ref} 
-            aria-current={currentPage === page.ref ? 'page' : 'false'}
+            href={'/#' + page.ref} 
+            aria-current={isPageSelected(page.ref)}
           >
             <NavList.LeadingVisual>
               {/* Using page pos => icon mapping to render icon */}

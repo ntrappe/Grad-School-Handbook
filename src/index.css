@@ -22,6 +22,10 @@ body[data-color-mode="night"] {
   }
 }
 
+main {
+  height: 100vh;
+}
+
 #header-wrapper {
   display: flex;
   position: fixed;
@@ -87,6 +91,34 @@ body[data-color-mode="night"] {
   margin-bottom: 10px;
 }
 
+/* Correct problems with @primer components */
+div.Blankslate {
+  border: 1px solid;
+  border-radius: 8px;
+  gap: var(--blankslate-spacing);
+  padding: var(--blankslate-padding) !important;
+}
+
+body[data-color-mode="day"] div.Blankslate {
+  border-color: var(--border-light-default);
+}
+
+body[data-color-mode="night"] div.Blankslate {
+  border-color: var(--border-dark-default);
+}
+
+div.Blankslate h2 {
+  font-size: var(--text-title-size-large) !important;
+  font-weight: var(--text-title-weight-large) !important;
+  line-height: var(--text-title-lineHeight-large) !important;
+}
+
+div.Blankslate p {
+  padding-bottom: 20px;
+  font-size: var(--text-body-size-large) !important;
+  line-height: var(--text-body-lineHeight-large) !important;
+}
+
 @media screen and (max-width: 768px) {
   #action-overlay > div {
     display: none;
@@ -103,4 +135,16 @@ body[data-color-mode="night"] {
   --bgColor-light-muted: #f6f8fa;
   --bgColor-dark-default: #0e1116;
   --bgColor-dark-muted: #171b21;
+
+  --border-dark-default: #31363c;
+  --border-light-default: #d1d7dd;
+
+  --text-title-size-large: 2rem;
+  --text-title-lineHeight-large: 1.5;
+  --text-title-weight-large: 600;
+  --text-body-size-large: 1rem;
+  --text-body-lineHeight-large: 1.5;
+
+  --blankslate-padding: 2rem;
+  --blankslate-spacing: 15px;
 }

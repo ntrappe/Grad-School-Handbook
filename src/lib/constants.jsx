@@ -44,22 +44,22 @@ export const LandingPage = [
 export const PreparationPages = [
   {
     pos: 1,
-    name: 'Choose Your Degree',
+    name: 'Choose Degree',
     ref: '/choose-degree',
   },
   {
     pos: 2,
-    name: 'Boost Your Profile',
+    name: 'Boost Profile',
     ref: '/boost-profile',
   },
   {
     pos: 3,
-    name: 'Build Your Team',
+    name: 'Build Team',
     ref: '/build-team',
   },
   {
     pos: 4,
-    name: 'Select Your Schools',
+    name: 'Select Schools',
     ref: '/select-schools',
   },
   {
@@ -69,7 +69,7 @@ export const PreparationPages = [
   },
   {
     pos: 6,
-    name: 'Contact Potential Supervisors',
+    name: 'Contact Supervisors',
     ref: '/contact-supervisors',
   },
 ];
@@ -77,22 +77,22 @@ export const PreparationPages = [
 export const ApplicationPages = [
   {
     pos: 7,
-    name: 'Make Your Plan',
+    name: 'Make Plan',
     ref: '/make-plan',
   },
   {
     pos: 8,
-    name: 'Prepare Your Materials',
+    name: 'Prepare Materials',
     ref: '/prepare-materials',
   },
   {
     pos: 9,
-    name: 'Letters of Recommendation',
+    name: 'Letters of Rec',
     ref: '/letters-of-rec',
   }, 
   {
     pos: 10,
-    name: 'Write Your Statements',
+    name: 'Write Statements',
     ref: '/write-statements',
   }, 
 ];

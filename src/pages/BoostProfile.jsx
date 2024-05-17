@@ -1,4 +1,4 @@
-import { Text, Heading, LabelGroup, Label, Octicon } from '@primer/react';
+import { Text, Heading, LabelGroup, Label, Octicon, Breadcrumbs } from '@primer/react';
 import styled from 'styled-components';
 import { useColorSchemeVar } from '@primer/react';
 import { useState } from 'react';
@@ -17,8 +17,9 @@ const ActionGroup = styled.div`
 `;
 
 const Caption = styled(Text)`
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 300;
   color: ${props => props.color};
 `;
 
@@ -30,18 +31,15 @@ function BoostProfile() {
 
   return (
     <>
-        <SectionIntroWrapper>
-        {/* <ActionGroup>
-          <LabelGroup>
-            <Label size='large' variant='warning'>Important</Label>
-          </LabelGroup>
-          <PageStatusMenu pageRef={'/boost-profile'} />
-        </ActionGroup> */}
-        <Heading>Boost Your Profile</Heading>
+      <SectionIntroWrapper>
+        <Breadcrumbs>
+          <Breadcrumbs.Item className='color-fg-sponsors'>Preparation</Breadcrumbs.Item>
+          <Breadcrumbs.Item selected>Boost Profile</Breadcrumbs.Item>
+        </Breadcrumbs>
+        <h1 className='color-fg-overlay'>Boost Profile</h1>
         <Caption color={captionColor}>
-          Univerisites typically expect applicants to demonstrate a strong academic background,
-          relevant research or work experience, and publications or posters. This section offers 
-          tips on how to expand your experience and strengthen your academic credentials
+          Suggestions on how bulk up your experience by enrolling in classes, taking on 
+          projects, presenting talks, or attending workshops.
         </Caption>
       </SectionIntroWrapper>
     </>

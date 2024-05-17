@@ -72,7 +72,7 @@ function App() {
         {!showMobileMenu &&
           <HashRouter>
             <SplitPageLayout sx={{marginTop: HEADER_LAYOUT_GAP}}>
-              <SplitPageLayout.Content sx={{paddingTop: '0.5rem'}}>
+              <SplitPageLayout.Content sx={{padding: '0.75rem'}}>
                 <MainContent />
               </SplitPageLayout.Content>
               <SplitPageLayout.Pane

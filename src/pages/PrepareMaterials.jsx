@@ -1,4 +1,4 @@
-import { Text, Heading, LabelGroup, Label, Octicon } from '@primer/react';
+import { Text, Heading, LabelGroup, Label, Octicon, Breadcrumbs } from '@primer/react';
 import styled from 'styled-components';
 import { useColorSchemeVar } from '@primer/react';
 import { useState } from 'react';
@@ -17,8 +17,9 @@ const ActionGroup = styled.div`
 `;
 
 const Caption = styled(Text)`
-  font-size: 1rem;
-  font-weight: 400;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  font-weight: 300;
   color: ${props => props.color};
 `;
 
@@ -30,11 +31,15 @@ function PrepareMaterials() {
 
   return (
     <>
-        <SectionIntroWrapper>
-        <Heading>Prepare Your Materials</Heading>
+      <SectionIntroWrapper>
+        <Breadcrumbs>
+          <Breadcrumbs.Item className='color-fg-sponsors'>Application</Breadcrumbs.Item>
+          <Breadcrumbs.Item selected>Prepare Materials</Breadcrumbs.Item>
+        </Breadcrumbs>
+        <h1 className='color-fg-overlay'>Prepare Materials</h1>
         <Caption color={captionColor}>
-          Most universities will ask for a resume or curriculum vitae, transcripts, and 
-          work samples. It's also good practice to share these with your rec letter writers.
+          Universities use resumes/CVs, transcripts, and work samples to assess your preparation,
+          readiness, and commitment to the field.
         </Caption>
       </SectionIntroWrapper>
     </>

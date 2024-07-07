@@ -78,7 +78,8 @@ function FixedHeader() {
           </ActionMenu>
         </Hidden>
         <Hidden when={['regular', 'wide']}>
-          <IconButton 
+          <IconButton
+            id='mobile-menu-toggle-button' 
             icon={ThreeBarsIcon}
             aria-labelledby={OPEN_MENU_EVENT }
             onClick={() => window.dispatchEvent(new Event(OPEN_MENU_EVENT))}

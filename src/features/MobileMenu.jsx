@@ -13,17 +13,20 @@ import { LIGHT_THEME, SET_DARK_EVENT, SET_LIGHT_EVENT, CLOSE_MENU_EVENT, MOBILE_
 
 const MenuWrapper = styled.div`
   background-color: ${themeGet('colors.canvas.default')};
+  background-color: orange;
 `;
 
 const MenuHeader = styled.div`
   border: 1px solid;
   border-color: ${props => props.borderColor};
   background-color: ${props => props.bg};
+  background-color: yellow;
 `;
 
 const BoxStyled = styled(Box)`
   border-top: 2.5px solid;
   border-color: ${props => props.borderColor};
+  background-color: plum;
 `;
 
 function MobileMenu() {

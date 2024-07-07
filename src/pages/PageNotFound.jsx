@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { Text, Heading, Label, Octicon, } from '@primer/react';
+import React from 'react';
 import { Blankslate } from '@primer/react/drafts';
 import { AlertIcon } from '@primer/octicons-react';
 
 function PageNotFound() {
-
   return (
     <>
       <Blankslate>
@@ -21,9 +19,6 @@ function PageNotFound() {
         <Blankslate.PrimaryAction href='/'>
           Return to Home
         </Blankslate.PrimaryAction>
-        <Blankslate.SecondaryAction href='https://github.com/ntrappe/Grad-School-Handbook/issues'>
-          Report an issue or problem
-        </Blankslate.SecondaryAction>
       </Blankslate>
     </>
   )

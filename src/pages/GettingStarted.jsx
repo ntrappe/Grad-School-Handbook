@@ -5,6 +5,19 @@ function GettingStarted() {
   return (
     <>
       <Heading>Getting Started</Heading>
+      <Text fontSize={2}>
+        Welcome to the Grad School Handbook. Back in 2023, I was exactly where you are now. I went 
+        through the same process: debating on attending graduate school, filling out my application, 
+        and waiting for a response. 
+        <br/><br/>
+        If you’re currently feeling overwhelmed, confused, or anxious...perfect!
+        You’re <i>exactly</i> where you need to be. What you’re feeling is completely normal and expected. 
+        <br/><br/>
+        This guide is an amalgamation of everything I learned. It’s full of the advice I received, 
+        mistakes I made, and sources I relied on. It should elucidate the process of applying to graduate 
+        school and—most importantly—give you the tools you need to make that next step.
+      </Text>
+      <Text fontSize={3}>Time, Money, & Energy</Text>
       {/* <p>Welcome! So you're thinking about going to graduate school? Exciting!</p>
       <Text fontSize={2}>The Process at a Glance</Text>
       <Timeline>

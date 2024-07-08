@@ -1,22 +1,48 @@
 import React, { useEffect, useState } from 'react';
 import { HashRouter } from 'react-router-dom';
 import { ThemeProvider, BaseStyles, SplitPageLayout } from '@primer/react';
-import MenuList from './components/MenuList';
-import MainContent from './components/MainContent';
-import FixedHeader from './components/FixedHeader';
-import MobileMenu from './components/MobileMenu';
-import ProgressSection from './components/ProgressSection';
+import MenuList from './features/MenuList';
+import MainContent from './features/MainContent';
+import FixedHeader from './features/FixedHeader';
+import MobileMenu from './features/MobileMenu';
 import { setDefaultColorScheme } from './lib/helpers';
 import { LIGHT_THEME, DARK_THEME, STORAGE_THEME, BODY_THEME, SET_DARK_EVENT, SET_LIGHT_EVENT,
          OPEN_MENU_EVENT, CLOSE_MENU_EVENT, HEADER_LAYOUT_GAP,
        } from './lib/constants';
+import styled from 'styled-components';
 
 const NARROW_PIXELS = 768;
 
+const StyledSection = styled.div`
+  height: 70%;
+  background-color: teal;
+
+  button {
+    margin-top: 6rem;
+  }
+`;
+
+const StyledPageLayout = styled(SplitPageLayout)`
+  background-color: orange !important;
+  height: 100vh;
+  width: 100%;
+`;
+
+const StyledHeader = styled(SplitPageLayout.Header)`
+  display: flex;
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  left: 0;
+  background-color: pink;
+  z-index: 99;
+  width: 100%;
+`;
 
 function App() {
   const [colorMode, setColorMode] = useState(setDefaultColorScheme());
   const [showMobileMenu, setShowMobileMenu] = useState(false);
+  const [selectedPage, setSelectedPage] = useState(0);
 
   /**
    * [Helper] Given a selected color mode, sets the data color scheme 
@@ -67,30 +93,18 @@ function App() {
   return (
     <ThemeProvider id='theme-provider' colorMode={colorMode}>
       <BaseStyles>
-        <FixedHeader />
-        {showMobileMenu && <MobileMenu />}
-        {!showMobileMenu &&
-          <HashRouter>
-            <SplitPageLayout sx={{marginTop: HEADER_LAYOUT_GAP}}>
-              <SplitPageLayout.Content sx={{paddingTop: '0.5rem'}}>
-                <MainContent />
+        <HashRouter>
+          <StyledPageLayout className='page-layout'>
+            <StyledHeader className='header'>
+              ok
+            </StyledHeader>
+            {!showMobileMenu && (
+              <SplitPageLayout.Content>
+                sup bro
               </SplitPageLayout.Content>
-              <SplitPageLayout.Pane
-                  id='menu'
-                  resizable='true' 
-                  aria-labelledby='menu' 
-                  position='start' 
-                  hidden={{ narrow: true }}
-              >
-                <MenuList />
-              </SplitPageLayout.Pane>
-              <SplitPageLayout.Footer>
-                Footer
-                {/* <ProgressSection /> */}
-              </SplitPageLayout.Footer>
-            </SplitPageLayout>
-          </HashRouter>
-        }
+            )}
+          </StyledPageLayout>
+        </HashRouter>
       </BaseStyles>
     </ThemeProvider>
   )

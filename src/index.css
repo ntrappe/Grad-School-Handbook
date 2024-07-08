@@ -171,4 +171,16 @@ h2 {
 
   --blankslate-padding: 2rem;
   --blankslate-spacing: 15px;
+
+  --header-title-nav-gap: 2rem;
+  --header-nav-item-gap: 20px;
+  --header-item-bar-gap: 17px;
+  --header-title-font-size: 17px;
+  --header-nav-font-size: 14px;
+  --header-nav-trailing: 0.9rem;
+  --header-nav-height: 658px; /* TODO CALC */
+  --header-title-height: 58px;
+
+  --nav-toggle-button-width: 22px;
+  --nav-toggle-button-click-radius: 35px;
 }
